@@ -1,9 +1,11 @@
 import { h, render, } from "preact";
 import { useReducer } from "preact/hooks";
+import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase'
 
 
 const Main = () => {
+    const [user, loading, error] = useAuthState(firebase.auth());
     return (
         <div>
             <h1>sign up</h1>
