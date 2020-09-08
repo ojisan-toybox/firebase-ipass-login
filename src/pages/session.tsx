@@ -230,8 +230,8 @@ const Session = () => {
                 <div>
                     <p>
                         現在ログイン中のアドレスにパスワードのリセットメールを送信します。</p>
-                    <div>
-                        <a
+                    <div style={{ display: 'flex' }}>
+                        <button
                             onClick={(e) => {
                                 if (!user.email) {
                                     throw new Error("email should be");
@@ -239,12 +239,11 @@ const Session = () => {
                                 e.preventDefault();
                                 firebase.auth().sendPasswordResetEmail(user.email);
                             }}
+                            style={{ marginRight: 12 }}
                         >
                             password忘れはこちら
-            </a>
-                    </div>
-                    <div>
-                        <a
+            </button>
+                        <button
                             onClick={(e) => {
                                 e.preventDefault();
                                 if (!user.email) {
@@ -260,7 +259,7 @@ const Session = () => {
                             }}
                         >
                             password忘れはこちら(カスタムUI)
-            </a>
+            </button>
                     </div>
                 </div>
             ) : (

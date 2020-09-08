@@ -35,15 +35,18 @@ const Reset = () => {
                 e.preventDefault()
                 const target = e.target as any
                 const newPassword = target.password.value as string;
-                firebase.auth().confirmPasswordReset(state.actionCode, newPassword).then(function (resp) {
-                    // ログインページか継続ページに戻すか、このページで直接ログインさせる
-                    // auth.signInWithEmailAndPassword(accountEmail, newPassword);
-                    alert('success')
-                }).catch(function (error) {
-                    // エラーの原因としてはトークンの有効期限切れ、もしくは弱すぎるパスワード
-                });
+                firebase.auth().verifyPasswordResetCode(state.actionCode).then(function (email) {
+                    firebase.auth().confirmPasswordReset(state.actionCode, newPassword).then(function (resp) {
+                        // ログインページか継続ページに戻すか、このページで直接ログインさせる
+                        firebase.auth().signInWithEmailAndPassword(email, newPassword);
+                        window.location.href = '/'
+                        alert('success')
+                    }).catch(function (error) {
+                        // エラーの原因としてはトークンの有効期限切れ、もしくは弱すぎるパスワード
+                    });
+                })
             }}>
-                <label>new password</label>
+                <label style={{ display: "block" }}>new password</label>
                 <input name='password' type='password'></input>
                 <button type='submit'>submit</button>
             </form>
