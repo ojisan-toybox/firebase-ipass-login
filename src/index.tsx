@@ -3,6 +3,18 @@ import { useReducer } from "preact/hooks";
 import { useAuthState } from 'react-firebase-hooks/auth';
 import firebase from 'firebase'
 
+const firebaseConfig = {
+    apiKey: "AIzaSyCuAFRc_YizyALHz6tTwGswcoIJtg9pz24",
+    authDomain: "fir-auth-ipass-yarikiru.firebaseapp.com",
+    databaseURL: "https://fir-auth-ipass-yarikiru.firebaseio.com",
+    projectId: "fir-auth-ipass-yarikiru",
+    storageBucket: "fir-auth-ipass-yarikiru.appspot.com",
+    messagingSenderId: "284772338087",
+    appId: "1:284772338087:web:c067a29123c90b2dcf4e82"
+};
+
+firebase.initializeApp(firebaseConfig);
+
 
 const Main = () => {
     const [user, loading, error] = useAuthState(firebase.auth());
