@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server",
-    "format": "prettier --write ./src/**/*.{ts,tsx,html}"
+    "format": "prettier --write ./src/**/*.{tsx,html}"
   },
   "repository": {
     "type": "git",
