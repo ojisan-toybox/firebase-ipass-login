@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ojisan-toybox/firebase-ipass-login#readme",
   "dependencies": {
+    "firebase": "^7.19.1",
     "preact": "^10.4.8"
   },
   "devDependencies": {
