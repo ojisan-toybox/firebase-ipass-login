@@ -43,6 +43,7 @@ const Reset = () => {
                         alert('success')
                     }).catch(function (error) {
                         // エラーの原因としてはトークンの有効期限切れ、もしくは弱すぎるパスワード
+                        alert(error.message)
                     });
                 })
             }}>
