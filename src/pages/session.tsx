@@ -190,7 +190,7 @@ const Session = () => {
                                 user
                                     .updateEmail(email)
                                     .then(function () {
-                                        // Update successful.
+                                        alert('アドレスを更新しました')
                                     })
                                     .catch(function (error) {
                                         // An error happened.
@@ -211,7 +211,7 @@ const Session = () => {
                                 user
                                     .updatePassword(newPassword)
                                     .then(function () {
-                                        // Update successful.
+                                        alert('パスワードを更新しました')
                                     })
                                     .catch(function (error) {
                                         // An error happened.
@@ -238,6 +238,7 @@ const Session = () => {
                                 }
                                 e.preventDefault();
                                 firebase.auth().sendPasswordResetEmail(user.email);
+                                alert('mailを送信しました。')
                             }}
                             style={{ marginRight: 12 }}
                         >
@@ -256,6 +257,7 @@ const Session = () => {
                                 firebase
                                     .auth()
                                     .sendPasswordResetEmail(user.email, actionCodeSettings);
+                                alert('mailを送信しました。')
                             }}
                         >
                             password忘れはこちら(カスタムUI)
@@ -272,6 +274,7 @@ const Session = () => {
                                 const target = e.target as any;
                                 const email = target.email.value as string;
                                 firebase.auth().sendPasswordResetEmail(email);
+                                alert('mailを送信しました。')
                             }}
                             style={{ display: "flex", flexDirection: "column" }}
                         >
