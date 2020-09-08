@@ -47,7 +47,7 @@ const Reset = () => {
                 <input name='password' type='password'></input>
                 <button type='submit'>submit</button>
             </form>
-        </div> : <div>それ以外</div>}
+        </div> : <div>error: modeが選択されていない不正なURLです。</div>}
     </div>
 }
 
