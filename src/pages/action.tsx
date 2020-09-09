@@ -13,9 +13,9 @@ const getParameterByName = (name: string) => {
 };
 
 /**
- * 諸々のresetを行うためのページ
+ * 諸々のactionを行うためのページ
  */
-const Reset = () => {
+const Action = () => {
     const [state, setState] = useState<{
         mode: string;
         actionCode: string;
@@ -32,19 +32,13 @@ const Reset = () => {
         });
     }, []);
 
-    // magic link login
+    // magic link を使ったログインフロー
     useEffect(() => {
-        // Confirm the link is a sign-in with email link.
         if (firebase.auth().isSignInWithEmailLink(window.location.href)) {
-            // Additional state parameters can also be passed via URL.
-            // This can be used to continue the user's intended action before triggering
-            // the sign-in operation.
-            // Get the email if available. This should be available if the user completes
-            // the flow on the same device where they started it.
+            // 同一デバイスからのログインであれば事前にセットしたemailを使ってログインできる
             let email = window.localStorage.getItem("emailForSignIn");
             if (!email) {
-                // User opened the link on a different device. To prevent session fixation
-                // attacks, ask the user to provide the associated email again. For example:
+                // session fixationを防ぐためにメアドの入力必要
                 email = window.prompt("Please provide your email for confirmation");
             }
             if (!email) {
@@ -55,6 +49,7 @@ const Reset = () => {
                 .auth()
                 .signInWithEmailLink(email, window.location.href)
                 .then(function (result) {
+                    // 認証成功時の処理
                     window.localStorage.removeItem("emailForSignIn");
                     window.location.href = '/'
                 })
@@ -101,8 +96,8 @@ const Reset = () => {
                         <button type="submit">submit</button>
                     </form>
                 </div>
-            ) : state?.mode === "signin" ? (
-                "singin page"
+            ) : state?.mode === "signIn" ? (
+                "now singining..."
             ) : (
                         <div>error: modeが選択されていない不正なURLです。</div>
                     )}
@@ -110,4 +105,4 @@ const Reset = () => {
     );
 };
 
-export default Reset;
+export default Action;

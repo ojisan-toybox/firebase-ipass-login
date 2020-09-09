@@ -1,7 +1,7 @@
 import { h, render, } from "preact";
 import { Router, Route } from "preact-router";
 import Session from "./pages/session";
-import Reset from "./pages/reset";
+import Action from "./pages/action";
 
 
 const Main = () => {
@@ -9,7 +9,7 @@ const Main = () => {
     return (
         <Router>
             <Route path="/" component={Session}></Route>
-            <Route path="/reset" component={Reset}></Route>
+            <Route path="/action" component={Action}></Route>
         </Router>
     );
 };
