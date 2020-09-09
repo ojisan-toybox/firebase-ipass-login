@@ -55,18 +55,10 @@ const Reset = () => {
                 .auth()
                 .signInWithEmailLink(email, window.location.href)
                 .then(function (result) {
-                    // Clear email from storage.
                     window.localStorage.removeItem("emailForSignIn");
-                    // You can access the new user via result.user
-                    // Additional user info profile not available via:
-                    // result.additionalUserInfo.profile == null
-                    // You can check if the user is new or existing:
-                    // result.additionalUserInfo.isNewUser
-                    console.log('result', result)
+                    window.location.href = '/'
                 })
                 .catch(function (error) {
-                    // Some error occurred, you can inspect the code: error.code
-                    // Common errors could be invalid email and invalid or expired OTPs.
                     alert("すでに利用されているワンタイムパスワードです。");
                     console.error(error);
                 });
