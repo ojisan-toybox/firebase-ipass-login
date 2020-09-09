@@ -67,7 +67,10 @@ const Action = () => {
         if (!actionCode) {
             throw new Error('invalid url')
         }
-        firebase.auth().applyActionCode(actionCode).then(() => { alert('success apply action code') })
+        firebase.auth().applyActionCode(actionCode).then(() => {
+            alert('success apply action code')
+            window.location.href = '/'
+        })
 
     }, []);
 
