@@ -68,6 +68,8 @@ const Reset = () => {
             <button type="submit">submit</button>
           </form>
         </div>
+      ) : state?.mode === "signin" ? (
+        "singin page"
       ) : (
         <div>error: modeが選択されていない不正なURLです。</div>
       )}

@@ -86,7 +86,7 @@ const Session = () => {
             </label>
             <input name="password" type="password"></input>
             <label style={{ display: "block" }}>confirm</label>
-            <input name="confirm" type="password"></input>
+            {/* firebase関係ないから書いていないけどここでpasswordのconfirmを挟むようにしよう! */}
             <button type="submit">submit</button>
           </form>
         </section>
@@ -243,8 +243,15 @@ const Session = () => {
                   throw new Error("email should be");
                 }
                 e.preventDefault();
-                firebase.auth().sendPasswordResetEmail(user.email);
-                alert("mailを送信しました。");
+                firebase
+                  .auth()
+                  .sendPasswordResetEmail(user.email)
+                  .then(() => {
+                    alert("mailを送信しました。");
+                  })
+                  .catch((e) => {
+                    alert(e.message);
+                  });
               }}
               style={{ marginRight: 12 }}
             >
@@ -262,8 +269,13 @@ const Session = () => {
                 };
                 firebase
                   .auth()
-                  .sendPasswordResetEmail(user.email, actionCodeSettings);
-                alert("mailを送信しました。");
+                  .sendPasswordResetEmail(user.email, actionCodeSettings)
+                  .then(() => {
+                    alert("mailを送信しました。");
+                  })
+                  .catch((e) => {
+                    alert(e.message);
+                  });
               }}
             >
               password忘れはこちら(カスタムUI)
@@ -279,8 +291,15 @@ const Session = () => {
               e.preventDefault();
               const target = e.target as any;
               const email = target.email.value as string;
-              firebase.auth().sendPasswordResetEmail(email);
-              alert("mailを送信しました。");
+              firebase
+                .auth()
+                .sendPasswordResetEmail(email)
+                .then(() => {
+                  alert("mailを送信しました。");
+                })
+                .catch((e) => {
+                  alert(e.message);
+                });
             }}
             style={{ display: "flex", flexDirection: "column" }}
           >
